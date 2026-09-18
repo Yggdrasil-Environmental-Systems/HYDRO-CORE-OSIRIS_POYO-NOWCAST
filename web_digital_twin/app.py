@@ -953,13 +953,20 @@ else:
     active_df["active_depth"] = 0.0; active_df["peak_depth_experienced"] = 0.0; active_df["max_velocity_ms"] = 0.0; active_df["damage_ratio"] = 0.0; active_df["active_loss"] = 0.0; active_df["dynamic_collapse"] = False; active_df["P1_flag"] = False; active_df["P2_flag"] = False; active_df["P3_flag"] = False; active_df["P4_flag"] = False; active_df["peak_hazard_vh"] = 0.0
 
 h_edar = float(s_depths[3]) if len(s_depths) > 3 else 0.0
-edar_biocollapse = h_edar >= 0.20
+
+# Umbrales sanitarios reales de ingeniería:
+# - Prealerta / Sobrecarga: h >= 0.25 m (Aliviaderos activos, planta viva)
+# - Colapso Biológico / Avería Motores: h >= 0.60 m (Inundación de reactores)
+edar_biocollapse = h_edar >= 0.60
+edar_prealert = (h_edar >= 0.25) and not edar_biocollapse
+
 mask_water_risk = (active_df["active_depth"] >= 0.50) & (active_df["asset_type"] == "Residencial")
 pop_water_compromised = int(active_df.loc[mask_water_risk, "pop_density"].sum())
 
 geriatric_beds_critical = 0
 for idx_v, v_center in enumerate(VULNERABLE_CENTERS_BASE):
-    if v_center["type"] == "GERIÁTRICO" and v_depths[idx_v] >= 0.30: geriatric_beds_critical += v_center["beds"]
+    if v_center["type"] == "GERIÁTRICO" and v_depths[idx_v] >= 0.30: 
+        geriatric_beds_critical += v_center["beds"]
 
 ha_biohazard_exposed = float(np.sum(active_df["active_depth"] >= 0.30) * 0.15) if edar_biocollapse else 0.0
 
@@ -967,12 +974,12 @@ if edar_biocollapse or pop_water_compromised > 5000:
     sanitary_status_label = "ALERTA BIOLÓGICA FASE 2: RUPTURA SANITARIA & RETROSIFONAJE"
     sanitary_color = "#ff1744"
     water_advisory = "HERVIDO OBLIGATORIO DE AGUA (BOIL WATER NOTICE)"
-elif pop_water_compromised > 0:
-    sanitary_status_label = "PREALERTA SANITARIA: VIGILANCIA DE CLORO LIBRE (RD 3/2023)"
+elif edar_prealert or pop_water_compromised > 0:
+    sanitary_status_label = "ALERTA BIOLÓGICA FASE 1: SOBRECARGA & VIGILANCIA DE CLORO (RD 3/2023)"
     sanitary_color = "#ff9100"
-    water_advisory = "MONITOREO DE DESINFECCIÓN EN CURSO"
+    water_advisory = "MONITOREO DE DESINFECCIÓN & ALIVIADEROS ACTIVOS"
 else:
-    sanitary_status_label = "RED HIDROSANITARIA CONFORME"
+    sanitary_status_label = "FASE 0: RED HIDROSANITARIA CONFORME"
     sanitary_color = "#00e676"
     water_advisory = "SUMINISTRO POTABLE SEGURO"
         
@@ -1448,13 +1455,15 @@ with tab_3d:
 # ------------------------------------------------------------------------------
 with tab_esalert:
     st.subheader("Centro de Despacho ES-Alert Trilingüe & Nodos Vitales (Lifeline Utilities)")
-    col_es1, col_es2 = st.columns([1.3, 1.7])
-    
-    with col_es1:
-        st.markdown("#### Estado de Subestaciones y Redes Estratégicas")
-        sub_rows = []
-        for i, s in enumerate(SUBSTATIONS_BASE):
-            h_s = s_depths[i]
+            if s["tipo"] == "SANEAMIENTO":
+                state_text = "🔴 FUERA SERVICIO (Inundación)" if h_s >= 0.60 else ("🟠 SOBRECARGA (Aliviadero)" if h_s >= 0.25 else "🟢 OPERATIVO")
+            elif s["tipo"] == "ELÉCTRICA":
+                is_down = h_s >= 0.35
+                state_text = "🔴 FUERA SERVICIO" if is_down else "🟢 OPERATIVO"
+            else:
+                is_down = (h_s >= 0.60) or power_outage
+                reason = "Corte Energía" if (power_outage and h_s < 0.60) else "Inundación"
+                state_text = f"🔴 FUERA SERVICIO ({reason})" if is_down else "🟢 OPERATIVO"
             if s["tipo"] == "ELÉCTRICA": is_down = h_s >= 0.35
             elif s["tipo"] == "SANEAMIENTO": is_down = h_s >= 0.20
             else: is_down = (h_s >= 0.60) or power_outage
@@ -1513,7 +1522,19 @@ with tab_esalert:
 
         env_c1, env_c2, env_c3, env_c4 = st.columns(4)
         with env_c1:
-            st.metric(label="Fallo Biológico EDAR", value="COLAPSO ACTIVO" if edar_biocollapse else "OPERATIVA", delta=f"Calado: {fmt_dec(h_edar, 2, ' m')} (Límite: 0,20 m)", delta_color="inverse" if edar_biocollapse else "normal")
+            if edar_biocollapse:
+                val_ed = "COLAPSO ACTIVO"
+                del_ed = f"Calado: {fmt_dec(h_edar, 2, ' m')} (Crítico ≥ 0,60 m)"
+                col_ed = "inverse"
+            elif edar_prealert:
+                val_ed = "SOBRECARGA / ALIVIO"
+                del_ed = f"Calado: {fmt_dec(h_edar, 2, ' m')} (Aliviadero Activo)"
+                col_ed = "normal"
+            else:
+                val_ed = "OPERATIVA"
+                del_ed = f"Calado: {fmt_dec(h_edar, 2, ' m')} (Nominal)"
+                col_ed = "normal"
+            st.metric(label="Fallo Biológico EDAR", value=val_ed, delta=del_ed, delta_color=col_ed)
         with env_c2:
             st.metric(label="Camas Geriátricas Aisladas", value=fmt_int(geriatric_beds_critical), delta="Riesgo Vital Inmediato" if geriatric_beds_critical > 0 else "Acceso Asegurado", delta_color="inverse" if geriatric_beds_critical > 0 else "off")
         with env_c3:
