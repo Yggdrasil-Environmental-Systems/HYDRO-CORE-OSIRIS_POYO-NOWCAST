@@ -1687,37 +1687,37 @@ with tab_esalert:
 
         st.markdown("---")
         st.markdown("#### 📧 Despacho Automático de Alertas (Misión Crítica)")
-
         if "Nowcast" in sim_mode and alert_state == "ROJO":
             if rain_val > lluvia_sensor or medidas_manuales_activas:
                 st.info("🔕 **Modo Simulador Detectado:** Has subido la lluvia o activado roturas manualmente. El envío automático de correos oficiales está BLOQUEADO por seguridad.")
-            try:
-                import smtplib
-                bot_remitente = st.secrets["EMAIL_BOT"]
-                bot_password = st.secrets["PASS_BOT"]
-                destinatario_oficial = st.secrets["EMAIL_DESTINO"]
+            else:
+                if not st.session_state.get("correo_rojo_enviado", False):
+                    try:
+                        import smtplib
+                        bot_remitente = st.secrets["EMAIL_BOT"]
+                        bot_password = st.secrets["PASS_BOT"]
+                        destinatario_oficial = st.secrets["EMAIL_DESTINO"]
 
-                cuerpo = f"EMERGENCIA {nivel_situacion} - POYO NOWCAST C2\n\nHora: {clock_badge_text}\nCaudal Estimado: {fmt_int(q_peak_simulated, ' m3/s')}\nPérdidas Activas: {fmt_dec(current_loss_m, 1, ' M€')}\n\nSe requiere orden de evacuación vertical inmediata."
-                msg = MIMEText(cuerpo)
-                msg['Subject'] = '🚨 ALERTA ROJA - DESBORDAMIENTO RAMBLA DEL POYO'
-                msg['From'] = bot_remitente
-                msg['To'] = destinatario_oficial
+                        cuerpo = f"EMERGENCIA {nivel_situacion} - POYO NOWCAST C2\n\nHora: {clock_badge_text}\nCaudal Estimado: {fmt_int(q_peak_simulated, ' m3/s')}\nPérdidas Activas: {fmt_dec(current_loss_m, 1, ' M€')}\n\nSe requiere orden de evacuación vertical inmediata."
+                        msg = MIMEText(cuerpo)
+                        msg['Subject'] = '🚨 ALERTA ROJA - DESBORDAMIENTO RAMBLA DEL POYO'
+                        msg['From'] = bot_remitente
+                        msg['To'] = destinatario_oficial
 
-                with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-                    server.login(bot_remitente, bot_password)
-                    server.send_message(msg)
+                        # Conexión SMTP real cifrada
+                        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+                            server.login(bot_remitente, bot_password)
+                            server.send_message(msg)
 
-                st.success(f"✅ Protocolo automático disparado. Correo oficial enviado a: {destinatario_oficial}")
-                st.session_state["correo_rojo_enviado"] = True
-         except Exception as e:
-                st.warning(f"⚠️ El correo no se pudo enviar: {e}")
-                # Opcional: si falla el correo, igual puedes marcarlo como enviado 
-                st.session_state["correo_rojo_enviado"] = True
+                        st.success(f"✅ Protocolo automático disparado. Correo oficial enviado a: {destinatario_oficial}")
+                        st.session_state["correo_rojo_enviado"] = True
+                    except Exception as e:
+                        st.warning(f"⚠️ El correo no se pudo enviar: {e}")
                 else:
                     st.info("ℹ️ El correo de Alerta Roja ya fue despachado al CECOPI para este evento.")
         elif alert_state != "ROJO":
             st.session_state["correo_rojo_enviado"] = False
-
+            
 # ------------------------------------------------------------------------------
 # TAB 3: DINÁMICA HIDRÁULICA FNO
 # ------------------------------------------------------------------------------
