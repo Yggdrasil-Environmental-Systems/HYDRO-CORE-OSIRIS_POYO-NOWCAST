@@ -1464,6 +1464,7 @@ with tab_esalert:
                 is_down = (h_s >= 0.60) or power_outage
                 reason = "Corte Energía" if (power_outage and h_s < 0.60) else "Inundación"
                 state_text = f"🔴 FUERA SERVICIO ({reason})" if is_down else "🟢 OPERATIVO"
+
             if s["tipo"] == "ELÉCTRICA": is_down = h_s >= 0.35
             elif s["tipo"] == "SANEAMIENTO": is_down = h_s >= 0.20
             else: is_down = (h_s >= 0.60) or power_outage
