@@ -39,13 +39,13 @@ Forensically benchmarked on the catastrophic October 29, 2024 flash flood in the
 ## 🏛️ Core Platform Modules
 
 HYDRO-CORE: OSIRIS V5
-├── [Module 1] Sentinel-1 InSAR Damage Proxy Mapping (Coherence Loss Δγ >= 0.40)
-├── [Module 2] 2D Fourier Neural Operator (FNO 2D / SpectralConv2d / PINO Invariants)
-├── [Module 3] Topological Road Severance & Multi-Sink Dijkstra (TTI Hospital Cut-off)
-├── [Module 4] WASH & Environmental Public Health (EDAR Biohazards & RD 3/2023 Alerts)
-├── [Module 5] Solvency II NatCat Engine (GEV EP Curves, Tariffs & Parametric Cat Bond)
-└── [Module 6] WebGPU 3D Command Console (Deck.gl LOD1 + OASIS CAP v1.2 Cell Broadcast)
-
+ ├── [Module 1] Sentinel-1 InSAR Damage Proxy Mapping (Coherence Loss Δγ >= 0.40)
+ ├── [Module 2] 2D Fourier Neural Operator (FNO 2D / SpectralConv2d / PINO Invariants)
+ ├── [Module 3] Topological Road Severance & Multi-Sink Dijkstra (TTI Hospital Cut-off)
+ ├── [Module 4] WASH & Environmental Public Health (EDAR Biohazards & RD 3/2023 Alerts)
+ ├── [Module 5] Solvency II NatCat Engine (GEV EP Curves, Tariffs & Parametric Cat Bond)
+ └── [Module 6] WebGPU 3D Command Console (Deck.gl LOD1 + OASIS CAP v1.2 Cell Broadcast)
+```
 
 ### 🔮 Research Roadmap: PI-GAU-FNO (V8 Architecture)
 While the **V5 core** is operational for sub-second inference, the YGGDRASIL engineering roadmap establishes the **V8 Planetary Foundation Model**:
@@ -59,10 +59,10 @@ While the **V5 core** is operational for sub-second inference, the YGGDRASIL eng
 
 ## 📑 Official Documentation & Certification
 
-* **Engineering Memorandum & Forensic Report (PDF):** [`docs/`](docs/)
+* **Engineering Memorandum & Forensic Report (PDF):** [`docs/HYDRO_CORE_OSIRIS_V5_Report.pdf`](docs/)
 * **Official Cartographic Plates (A1 LiDAR / InSAR):** [`docs/PLANO_POYO_A1_.pdf`](docs/PLANO_POYO_A1_.pdf)
 * **Permanent Scientific Archive:** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22833519.svg)](https://doi.org/10.5281/zenodo.22833519)
-* **Verified Git Release Release:** `f61d12a`
+* **Verified Git Release:** `f61d12a`
 * **Regulatory Compliance:** ISO 22320:2018 (Civil Emergency Command), ISO 14091:2021, EU Floods Directive 2007/60/EC, Solvency II Directive 2009/138/EC, and EU AI Act (Regulation EU 2024/1689 - High-Risk HITL Governance).
 
 ---
@@ -82,33 +82,44 @@ While the **V5 core** is operational for sub-second inference, the YGGDRASIL eng
 ├── web_digital_twin/       # Operational C4ISR Streamlit console (WebGPU Deck.gl)
 ├── requirements.txt        # Runtime dependencies
 └── README.md
+```
 
-🚀 Quick Start & Local Deployment
-1. Clone the repository
-Bash
-git clone [https://github.com/Yggdrasil-Environmental-Systems/HYDRO-CORE-OSIRIS_POYO-NOWCAST.git](https://github.com/Yggdrasil-Environmental-Systems/HYDRO-CORE-OSIRIS_POYO-NOWCAST.git)
+---
+
+## 🚀 Quick Start & Local Deployment
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/Yggdrasil-Environmental-Systems/HYDRO-CORE-OSIRIS_POYO-NOWCAST.git
 cd HYDRO-CORE-OSIRIS_POYO-NOWCAST
-2. Environment Setup
-Bash
+```
+
+### 2. Environment Setup
+```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
-3. Launch Civil C4ISR Console
-Bash
+```
+
+### 3. Launch Civil C4ISR Console
+```bash
 cd web_digital_twin
 streamlit run app.py
-✍️ Authorship & Professional Accreditation
-Lead Systems Architect & Technical Director: Kelvin Jesús Flores Yarihuaman
+```
 
-Professional Credentials: Environmental Engineer Accredited in Spain & Peru | MSc Candidate (International University of Valencia - VIU]
+---
 
-Institutional Context: YGGDRASIL ENVIRONMENTAL SYSTEMS
+## ✍️ Authorship & Professional Accreditation
 
-📜 Licensing Framework
+* **Lead Systems Architect & Technical Director:** Kelvin Jesus Flores Yarihuaman
+* **Professional Credentials:** Environmental Engineer Accredited in Spain & Peru | MSc Candidate (International University of Valencia - VIU)
+* **Institutional Context:** YGGDRASIL ENVIRONMENTAL SYSTEMS
+
+---
+
+## 📜 Licensing Framework
+
 This repository adheres to a modular open-science licensing structure:
-
-Documentation & Cartography: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0).
-
-Source Code & Neural Operators: GNU General Public License v3.0 (GNU GPLv3).
-
-Datasets & Graph Matrices: Open Data Commons Attribution License (ODC-By).
+* **Documentation & Cartography:** [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+* **Source Code & Neural Operators:** [GNU General Public License v3.0 (GNU GPLv3)](https://www.gnu.org/licenses/gpl-3.0).
+* **Datasets & Graph Matrices:** [Open Data Commons Attribution License (ODC-By)](https://opendatacommons.org/licenses/by/).
