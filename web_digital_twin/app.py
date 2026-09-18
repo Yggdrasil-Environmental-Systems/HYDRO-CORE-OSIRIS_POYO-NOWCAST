@@ -904,14 +904,14 @@ if not active_df.empty:
         h_act_rep[mask_val_norte] = 0.0
         h_pk_rep[mask_val_norte] = 0.0
     # Histéresis urbana: en recesión el agua no se evapora, drena gradualmente hacia la Albufera
-    if "Forense" in sim_mode and peak_q_so_far >= 250.0:
+    if "Forense" in sim_mode and peak_q_so_far >= 500.0:
         progreso_recesion = max(0.0, min(1.0, (sim_minute - 210.0) / 150.0))
         factor_retencion = max(0.40, 1.0 - 0.60 * progreso_recesion)
-        desborde_rambla_act = h_act_rep if q_instant >= 250.0 else (h_pk_rep * factor_retencion * (h_pk_rep > 0.15))
+        desborde_rambla_act = h_act_rep if q_instant >= 500.0 else (h_pk_rep * factor_retencion * (h_pk_rep > 0.15))
         desborde_rambla_pk  = h_pk_rep
     else:
-        desborde_rambla_act = h_act_rep if q_instant >= 250.0 else np.zeros_like(h_act_rep)
-        desborde_rambla_pk  = h_pk_rep if peak_q_so_far >= 250.0 else np.zeros_like(h_pk_rep)
+        desborde_rambla_act = h_act_rep if q_instant >= 500.0 else np.zeros_like(h_act_rep)
+        desborde_rambla_pk  = h_pk_rep if peak_q_so_far >= 500.0 else np.zeros_like(h_pk_rep)
 
     raw_active = desborde_rambla_act + mota_add + pluvial_add + surge_add + turia_add + golas_add
     raw_peak   = desborde_rambla_pk + mota_add + pluvial_add + surge_add + turia_add + golas_add
@@ -952,13 +952,15 @@ if not active_df.empty:
 else:
     active_df["active_depth"] = 0.0; active_df["peak_depth_experienced"] = 0.0; active_df["max_velocity_ms"] = 0.0; active_df["damage_ratio"] = 0.0; active_df["active_loss"] = 0.0; active_df["dynamic_collapse"] = False; active_df["P1_flag"] = False; active_df["P2_flag"] = False; active_df["P3_flag"] = False; active_df["P4_flag"] = False; active_df["peak_hazard_vh"] = 0.0
 
-h_edar = float(s_depths[3]) if len(s_depths) > 3 else 0.0
+# Cota real: la EDAR Catarroja está elevada +0.80 m sobre la solera del cauce del río
+h_cauce_edar = float(s_depths[3]) if len(s_depths) > 3 else 0.0
+h_edar = max(0.0, h_cauce_edar - 0.80)
 
-# Umbrales sanitarios reales de ingeniería:
-# - Prealerta / Sobrecarga: h >= 0.25 m (Aliviaderos activos, planta viva)
-# - Colapso Biológico / Avería Motores: h >= 0.60 m (Inundación de reactores)
-edar_biocollapse = h_edar >= 0.60
-edar_prealert = (h_edar >= 0.25) and not edar_biocollapse
+# Umbrales reales de ingeniería sanitaria:
+# - Prealerta / Sobrecarga: h_cauce >= 0.70 m (aliviadero activo, planta segura)
+# - Colapso Biológico / Avería Motores: h_edar >= 0.40 m (inundación real de reactores)
+edar_biocollapse = h_edar >= 0.40
+edar_prealert = (h_cauce_edar >= 0.70) and not edar_biocollapse
 
 mask_water_risk = (active_df["active_depth"] >= 0.50) & (active_df["asset_type"] == "Residencial")
 pop_water_compromised = int(active_df.loc[mask_water_risk, "pop_density"].sum())
