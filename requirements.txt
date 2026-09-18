@@ -6,9 +6,3 @@ numpy
 pyarrow
 requests
 pyproj
-
-## 📑 Official Technical Documentation & Certification
-* **Engineering Memorandum & Forensic Report (PDF):** [`docs/EXP-VAL-POYO-2026_OSIRIS_V5_Civil_C4ISR_Report.pdf`](docs/)
-* **Cartographic Plates (A1 LiDAR / InSAR):** [`docs/PLANO_POYO_A1_.pdf`](docs/PLANO_POYO_A1_.pdf)
-* **Permanent Scientific Archive:** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22833519.svg)](https://doi.org/10.5281/zenodo.22833519)
-* **Verified Git Release Commit:** `f61d12a`
