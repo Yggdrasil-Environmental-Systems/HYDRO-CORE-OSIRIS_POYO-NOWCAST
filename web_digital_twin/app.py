@@ -1954,7 +1954,7 @@ st.markdown(
     """
     <div style='color: #8b949e; font-size: 0.75rem; line-height: 1.5; padding: 0 10px;'>
         <b style='color: #58a6ff;'>POYO-NOWCAST (YGGDRASIL ENVIRONMENTAL SYSTEMS: HYDRO-CORE: OSIRIS) // PLATAFORMA C4ISR CIVIL & GEMELO DIGITAL 3D INTEGRADO</b><br/>
-        Arquitectura Ciberfísica de Resiliencia bajo estándares internacionales: <b>ISO 22320:2018</b> (Mando y Control de Emergencias), <b>ISO 14091:2021</b> (Vulnerabilidad Climática), <b>ISO 24512:2007</b> (Seguridad del Agua Potable), teledetección radar <b>Copernicus InSAR DPM</b> y protocolo de alerta <b>ITU-T X.1303 / OASIS CAP v1.2</b>.<br/>        Arquitectura Ciberfísica de Resiliencia bajo estándares internacionales: <b>ISO 22320:2018</b> (Gestión de Emergencias), <b>ISO 14091:2021</b> (Vulnerabilidad Climática), <b>ISO 24512:2007</b> (Seguridad del Agua Potable) y protocolo de alerta <b>ITU-T X.1303 / OASIS CAP v1.2</b>.<br/>
+        Arquitectura Ciberfísica de Resiliencia bajo estándares internacionales: <b>ISO 22320:2018</b> (Mando y Control de Emergencias), <b>ISO 14091:2021</b> (Vulnerabilidad Climática), <b>ISO 24512:2007</b> (Seguridad del Agua Potable), teledetección radar <b>Copernicus InSAR DPM</b> y protocolo de alerta <b>ITU-T X.1303 / OASIS CAP v1.2</b>.<br/>
         Autor: <b>Kelvin Jesús Flores Yarihuaman</b> (<a href='https://www.linkedin.com/in/kelvinflores-ingenieria' target='_blank' style='color: #58a6ff; text-decoration: none;'>LinkedIn</a>) | Metasistema: <b>YGGDRASIL-OS</b>.<br/>
         <ul style='margin-top: 4px; margin-bottom: 0; padding-left: 20px;'>
             <li><b>Documentación Técnica & Memoria:</b> Licencia Creative Commons Atribución-NoComercial-CompartirIgual (CC BY-NC-SA 4.0).</li>
