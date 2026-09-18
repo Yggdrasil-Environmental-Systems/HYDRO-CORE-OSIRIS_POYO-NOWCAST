@@ -331,13 +331,14 @@ def load_production_fno(basin_name):
     dev = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     net = FNO2dUniversal(in_channels=4, out_channels=3, modes=16, width=48, padding=8).to(dev)
 
+    base_models_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models")
     possible_paths = [
-        "web_digital_twin/models/fno_hydro_FINAL_WEIGHTS.pt",
-        "models/fno_hydro_FINAL_WEIGHTS.pt",
-        "fno_hydro_FINAL_WEIGHTS.pt",
+        os.path.join(base_models_dir, "fno_poyo_surrogate.pt"),
         "web_digital_twin/models/fno_poyo_surrogate.pt",
-        "models/fno_poyo_surrogate.pt"
+        "models/fno_poyo_surrogate.pt",
+        "fno_poyo_surrogate.pt"
     ]
+    
     ckpt_path = next((p for p in possible_paths if os.path.exists(p)), None)
 
     H, W = 128, 128
@@ -1125,7 +1126,8 @@ elif ia_fuera_de_rango:
 elif q_peak_simulated > 25000.0:
     ckpt_status_tag = "🔴 RESPALDO CINEMÁTICO (LÍMITE MÁXIMO SUPERADO)"
 else:
-    ckpt_status_tag = "🟢 MODELO IA FNO V5 (ACTIVO Y COHERENTE)"
+    nombre_archivo = os.path.basename(ckpt_path) if ckpt_path else "fno_poyo_surrogate.pt"
+    ckpt_status_tag = f"🟢 FNO V5 CARGADO: {nombre_archivo} ({H_dim}x{W_dim} tensores)"
 telemetry_txt = "SERIE FORENSE 29-O: Chiva / SAIH" if "Forense" in sim_mode else ("TELEMETRÍA AEMET: " + live_obs['station_name'] if (telemetry_active and live_obs) else "NOWCAST PREDICTIVO")
 
 st.markdown(
