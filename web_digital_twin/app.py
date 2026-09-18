@@ -1455,6 +1455,13 @@ with tab_3d:
 # ------------------------------------------------------------------------------
 with tab_esalert:
     st.subheader("Centro de Despacho ES-Alert Trilingüe & Nodos Vitales (Lifeline Utilities)")
+    col_es1, col_es2 = st.columns([1.3, 1.7])
+    
+    with col_es1:
+        st.markdown("#### Estado de Subestaciones y Redes Estratégicas")
+        sub_rows = []
+        for i, s in enumerate(SUBSTATIONS_BASE):
+            h_s = s_depths[i]
             if s["tipo"] == "SANEAMIENTO":
                 state_text = "🔴 FUERA SERVICIO (Inundación)" if h_s >= 0.60 else ("🟠 SOBRECARGA (Aliviadero)" if h_s >= 0.25 else "🟢 OPERATIVO")
             elif s["tipo"] == "ELÉCTRICA":
@@ -1464,13 +1471,7 @@ with tab_esalert:
                 is_down = (h_s >= 0.60) or power_outage
                 reason = "Corte Energía" if (power_outage and h_s < 0.60) else "Inundación"
                 state_text = f"🔴 FUERA SERVICIO ({reason})" if is_down else "🟢 OPERATIVO"
-
-            if s["tipo"] == "ELÉCTRICA": is_down = h_s >= 0.35
-            elif s["tipo"] == "SANEAMIENTO": is_down = h_s >= 0.20
-            else: is_down = (h_s >= 0.60) or power_outage
-            
-            reason = "Corte Energía" if (s["tipo"] == "TELECOM" and power_outage and h_s < 0.60) else "Inundación"
-            state_text = f"🔴 FUERA SERVICIO ({reason})" if is_down else "🟢 OPERATIVO"
+                
             sub_rows.append({"Infraestructura": s["name"], "Tipo": s["tipo"], "Calado Integrado": fmt_dec(h_s, 2, " m"), "Estado": state_text})
         st.dataframe(pd.DataFrame(sub_rows), hide_index=True, width="stretch")
 
