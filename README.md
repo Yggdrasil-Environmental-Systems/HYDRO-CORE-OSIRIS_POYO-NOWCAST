@@ -59,8 +59,8 @@ While the **V5 core** is operational for sub-second inference, the YGGDRASIL eng
 
 ## 📑 Official Documentation & Certification
 
-* **Engineering Memorandum & Forensic Report (PDF):** [`docs/HYDRO_CORE_OSIRIS_V5_Report.pdf`](docs/)
-* **Official Cartographic Plates (A1 LiDAR / InSAR):** [`docs/PLANO_POYO_A1_.pdf`](docs/PLANO_POYO_A1_.pdf)
+* **Engineering Memorandum & Forensic Report (PDF):** [`docs/Add official technical report EXP-VAL-POYO-2026 (V5).pdf`](docs/)
+* **Official Cartographic Plates (A1 LiDAR / InSAR):** [`docs/PLANO_POYO_A1.jpg`](docs/PLANO_POYO_A1)
 * **Permanent Scientific Archive:** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22833519.svg)](https://doi.org/10.5281/zenodo.22833519)
 * **Verified Git Release:** `f61d12a`
 * **Regulatory Compliance:** ISO 22320:2018 (Civil Emergency Command), ISO 14091:2021, EU Floods Directive 2007/60/EC, Solvency II Directive 2009/138/EC, and EU AI Act (Regulation EU 2024/1689 - High-Risk HITL Governance).
