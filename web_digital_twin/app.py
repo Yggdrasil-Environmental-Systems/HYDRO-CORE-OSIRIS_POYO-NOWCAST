@@ -32,10 +32,14 @@ try:
     from zoneinfo import ZoneInfo
     VALENCIA_TZ = ZoneInfo("Europe/Madrid")
 except Exception:
-    import time
-    # Si fallara zoneinfo, detecta automáticamente si es horario de verano (+2) o invierno (+1)
-    is_dst = time.localtime().tm_isdst > 0
-    VALENCIA_TZ = timezone(timedelta(hours=2 if is_dst else 1))
+        import time
+        # Fallback seguro para la nube basado en UTC.
+        # El horario de verano (CEST) en España abarca de abril a octubre aprox.
+        mes_actual_utc = time.gmtime().tm_mon
+        if 4 <= mes_actual_utc <= 10:
+            VALENCIA_TZ = timezone(timedelta(hours=2)) # Verano (Nowcast hoy)
+        else:
+            VALENCIA_TZ = timezone(timedelta(hours=1)) # Invierno (DANA 29-O)
 
 try:
     from pyproj import Transformer
@@ -1703,11 +1707,10 @@ with tab_esalert:
 
                 st.success(f"✅ Protocolo automático disparado. Correo oficial enviado a: {destinatario_oficial}")
                 st.session_state["correo_rojo_enviado"] = True
-            except Exception as e:
+         except Exception as e:
                 st.warning(f"⚠️ El correo no se pudo enviar: {e}")
-                        st.session_state["correo_rojo_enviado"] = True
-                    except Exception as e:
-                        st.warning("⚠️ El correo no se pudo enviar. Revisa las credenciales del Bot.")
+                # Opcional: si falla el correo, igual puedes marcarlo como enviado 
+                st.session_state["correo_rojo_enviado"] = True
                 else:
                     st.info("ℹ️ El correo de Alerta Roja ya fue despachado al CECOPI para este evento.")
         elif alert_state != "ROJO":
