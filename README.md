@@ -36,6 +36,38 @@ Forensically benchmarked on the catastrophic October 29, 2024 flash flood in the
 
 ---
 
+<div align="center">
+  <img src="docs/PLANO_POYO_A1.jpg" alt="Official A1 Cartographic Plate" width="100%"/>
+  <p><em>Official Cartographic Plate A1 (EPSG:25830) — 2D FNO Hydrodynamic Inundation Footprint & Sentinel-1 InSAR DPM Ruin Centroids</em></p>
+</div>
+
+## 📊 Quantitative Hydrodynamics & Solvency II Benchmarks
+
+<div align="center">
+  <table>
+    <tr>
+      <td width="50%">
+        <img src="data/processed/fig_03_curva_vulnerabilidad_calado_dano.png" alt="Relative Damage Function"/>
+        <p align="center"><strong>Analytical Depth-Damage Function D(h) (CCS/JRC)</strong></p>
+      </td>
+      <td width="50%">
+        <img src="data/processed/fig_02_concentracion_perdidas_municipales.png" alt="Territorial Losses"/>
+        <p align="center"><strong>Cadastral Gross Economic Losses by Municipality</strong></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="50%">
+        <img src="data/processed/fig_01_curva_excedencia_xol.png" alt="Solvency II EP Curve"/>
+        <p align="center"><strong>Exceedance Probability (EP) Curve & XoL Reinsurance</strong></p>
+      </td>
+      <td width="50%">
+        <img src="data/processed/fig_04_monte_carlo_cat_bond_payout.png" alt="Monte Carlo Cat Bond"/>
+        <p align="center"><strong>Monte Carlo Simulation (N=10,000y) Dual-Trigger Payout</strong></p>
+      </td>
+    </tr>
+  </table>
+</div>
+
 ## 🏛️ Core Platform Modules
 
 ```text
@@ -62,8 +94,7 @@ While the **V5 core** is operational for sub-second inference, the YGGDRASIL eng
 
 ## 📑 Official Documentation & Certification
 
-* **Engineering Memorandum & Forensic Report (PDF):** [`docs/`](docs/)
-* **Official Cartographic Plates (A1 LiDAR / InSAR):** [`docs/PLANO_POYO_A1_.pdf`](docs/PLANO_POYO_A1_.pdf)
+* **Engineering Memorandum & Forensic Report (PDF):** [docs/Add official technical report EXP-VAL-POYO-2026 (V5).pdf](docs/Add%20official%20technical%20report%20EXP-VAL-POYO-2026%20(V5).pdf)
 * **Permanent Scientific Archive:** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22833519.svg)](https://doi.org/10.5281/zenodo.22833519)
 * **Verified Git Release:** `f61d12a`
 * **Regulatory Compliance:** ISO 22320:2018 (Civil Emergency Command), ISO 14091:2021, EU Floods Directive 2007/60/EC, Solvency II Directive 2009/138/EC, and EU AI Act (Regulation EU 2024/1689 - High-Risk HITL Governance).
