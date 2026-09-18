@@ -32,7 +32,10 @@ try:
     from zoneinfo import ZoneInfo
     VALENCIA_TZ = ZoneInfo("Europe/Madrid")
 except Exception:
-    VALENCIA_TZ = timezone(timedelta(hours=2))
+    import time
+    # Si fallara zoneinfo, detecta automáticamente si es horario de verano (+2) o invierno (+1)
+    is_dst = time.localtime().tm_isdst > 0
+    VALENCIA_TZ = timezone(timedelta(hours=2 if is_dst else 1))
 
 try:
     from pyproj import Transformer
@@ -516,8 +519,7 @@ with p_col2:
 
 sim_mode = st.sidebar.radio("Seleccionar Modo:", ["🔴 Modo Hindcast (Forense DANA Valencia 29-O 2024)", "⚡ Modo Nowcast Predictivo (Tiempo Real)"], key="sim_mode_selector", label_visibility="collapsed")
 if st.sidebar.button("🔄 Restablecer Parámetros", use_container_width=True):
-    st.cache_data.clear()
-    for k in list(st.session_state.keys()): del st.session_state[k]
+    st.session_state.clear()
     st.rerun()
 
 basin_selected = st.sidebar.selectbox("🗺️ Seleccionar Cuenca (Zero-Shot):", ["Rambla del Poyo", "Río Magro", "Barranco del Carraixet"])
@@ -747,22 +749,17 @@ with torch.no_grad():
         
         max_calado_ia = float(h_fno.max().item())
         max_vel_ia = float(vel_mag_fno.max().item())
-        vel_media_agua = float((vel_mag_fno * mask_inundada).sum() / (mask_inundada.sum() + 1e-6))
         
-        globals()['ia_fuera_de_rango'] = False
+        ia_fuera_de_rango = False
         
         # El filtro sólo supervisa crecidas activas (> 600 m3/s) para evitar falsos positivos en recesión
         if q_instant > 600.0:
-            if ia_media_montana > 0.40:
-                globals()['ia_fuera_de_rango'] = True
-            elif ia_media_cauce < 0.03:
-                globals()['ia_fuera_de_rango'] = True
-            elif max_calado_ia > 20.0 or max_vel_ia > 15.0:
-                globals()['ia_fuera_de_rango'] = True
+            if ia_media_montana > 0.40 or ia_media_cauce < 0.03 or max_calado_ia > 20.0 or max_vel_ia > 15.0:
+                ia_fuera_de_rango = True
         # ---------------------------------------------------------------------
        
         # Si la IA está en rango sano (V5 validada), INFERENCIA PURA FNO
-        if globals().get('ia_fuera_de_rango', False):
+        if ia_fuera_de_rango:
             h_field_act = h_kinematic
             v_field_act = v_kinematic
         elif q_instant < 10.0:
@@ -1119,7 +1116,7 @@ elif alert_state == "NARANJA":
 
 if not IS_REAL_CKPT:
     ckpt_status_tag = "🔴 RESPALDO CINEMÁTICO (MODELO IA AUSENTE)"
-elif globals().get('ia_fuera_de_rango', False):
+elif ia_fuera_de_rango:
     ckpt_status_tag = "🔴 RESPALDO CINEMÁTICO (IA FUERA DE RANGO / ALUCINANDO)"
 elif q_peak_simulated > 25000.0:
     ckpt_status_tag = "🔴 RESPALDO CINEMÁTICO (LÍMITE MÁXIMO SUPERADO)"
@@ -1688,20 +1685,26 @@ with tab_esalert:
         if "Nowcast" in sim_mode and alert_state == "ROJO":
             if rain_val > lluvia_sensor or medidas_manuales_activas:
                 st.info("🔕 **Modo Simulador Detectado:** Has subido la lluvia o activado roturas manualmente. El envío automático de correos oficiales está BLOQUEADO por seguridad.")
-            else:
-                if not st.session_state.get("correo_rojo_enviado", False):
-                    try:
-                        bot_remitente = st.secrets["EMAIL_BOT"]
-                        bot_password = st.secrets["PASS_BOT"]
-                        destinatario_oficial = st.secrets["EMAIL_DESTINO"]
+            try:
+                import smtplib
+                bot_remitente = st.secrets["EMAIL_BOT"]
+                bot_password = st.secrets["PASS_BOT"]
+                destinatario_oficial = st.secrets["EMAIL_DESTINO"]
 
-                        cuerpo = f"EMERGENCIA {nivel_situacion} - POYO NOWCAST C2\n\nHora: {clock_badge_text}\nCaudal Estimado: {fmt_int(q_peak_simulated, ' m3/s')}\nPérdidas Activas: {fmt_dec(current_loss_m, 1, ' M€')}\n\nSe requiere orden de evacuación vertical inmediata."
-                        msg = MIMEText(cuerpo)
-                        msg['Subject'] = '🚨 ALERTA ROJA - DESBORDAMIENTO RAMBLA DEL POYO'
-                        msg['From'] = bot_remitente
-                        msg['To'] = destinatario_oficial
+                cuerpo = f"EMERGENCIA {nivel_situacion} - POYO NOWCAST C2\n\nHora: {clock_badge_text}\nCaudal Estimado: {fmt_int(q_peak_simulated, ' m3/s')}\nPérdidas Activas: {fmt_dec(current_loss_m, 1, ' M€')}\n\nSe requiere orden de evacuación vertical inmediata."
+                msg = MIMEText(cuerpo)
+                msg['Subject'] = '🚨 ALERTA ROJA - DESBORDAMIENTO RAMBLA DEL POYO'
+                msg['From'] = bot_remitente
+                msg['To'] = destinatario_oficial
 
-                        st.success(f"✅ Protocolo automático disparado. Correo oficial enviado a: {destinatario_oficial}")
+                with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+                    server.login(bot_remitente, bot_password)
+                    server.send_message(msg)
+
+                st.success(f"✅ Protocolo automático disparado. Correo oficial enviado a: {destinatario_oficial}")
+                st.session_state["correo_rojo_enviado"] = True
+            except Exception as e:
+                st.warning(f"⚠️ El correo no se pudo enviar: {e}")
                         st.session_state["correo_rojo_enviado"] = True
                     except Exception as e:
                         st.warning("⚠️ El correo no se pudo enviar. Revisa las credenciales del Bot.")
