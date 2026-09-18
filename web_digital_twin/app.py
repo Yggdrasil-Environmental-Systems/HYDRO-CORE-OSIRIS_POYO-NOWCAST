@@ -1126,8 +1126,7 @@ elif ia_fuera_de_rango:
 elif q_peak_simulated > 25000.0:
     ckpt_status_tag = "🔴 RESPALDO CINEMÁTICO (LÍMITE MÁXIMO SUPERADO)"
 else:
-    nombre_archivo = os.path.basename(ckpt_path) if ckpt_path else "fno_poyo_surrogate.pt"
-    ckpt_status_tag = f"🟢 FNO V5 CARGADO: {nombre_archivo} ({H_dim}x{W_dim} tensores)"
+    ckpt_status_tag = f"🟢 FNO V5 CARGADO: fno_poyo_surrogate.pt ({H_dim}x{W_dim} tensores)"
 telemetry_txt = "SERIE FORENSE 29-O: Chiva / SAIH" if "Forense" in sim_mode else ("TELEMETRÍA AEMET: " + live_obs['station_name'] if (telemetry_active and live_obs) else "NOWCAST PREDICTIVO")
 
 st.markdown(
