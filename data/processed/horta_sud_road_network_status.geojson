@@ -1,0 +1,551 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          699500.0,
+          4377000.0
+        ]
+      },
+      "properties": {
+        "id": "N_CHIVA",
+        "municipality": "Chiva",
+        "is_hospital": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          703200.0,
+          4374500.0
+        ]
+      },
+      "properties": {
+        "id": "N_CHESTE",
+        "municipality": "Cheste",
+        "is_hospital": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          720500.0,
+          4368500.0
+        ]
+      },
+      "properties": {
+        "id": "N_TORRENT",
+        "municipality": "Torrent",
+        "is_hospital": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          722000.0,
+          4369500.0
+        ]
+      },
+      "properties": {
+        "id": "N_PICANYA",
+        "municipality": "Picanya",
+        "is_hospital": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          723500.0,
+          4368200.0
+        ]
+      },
+      "properties": {
+        "id": "N_PAIPORTA",
+        "municipality": "Paiporta",
+        "is_hospital": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          725800.0,
+          4368900.0
+        ]
+      },
+      "properties": {
+        "id": "N_SEDAVI",
+        "municipality": "Sedaví",
+        "is_hospital": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          724800.0,
+          4365800.0
+        ]
+      },
+      "properties": {
+        "id": "N_CATARROJA",
+        "municipality": "Catarroja",
+        "is_hospital": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          724200.0,
+          4364500.0
+        ]
+      },
+      "properties": {
+        "id": "N_ALBAL",
+        "municipality": "Albal",
+        "is_hospital": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          725500.0,
+          4371500.0
+        ]
+      },
+      "properties": {
+        "id": "N_V30_SUR",
+        "municipality": "Valencia_Sur",
+        "is_hospital": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          722800.0,
+          4374100.0
+        ]
+      },
+      "properties": {
+        "id": "N_V30_OESTE",
+        "municipality": "Valencia_Oeste",
+        "is_hospital": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          726400.0,
+          4372100.0
+        ]
+      },
+      "properties": {
+        "id": "HOSPITAL_LA_FE",
+        "municipality": "Valencia",
+        "is_hospital": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          723500.0,
+          4373800.0
+        ]
+      },
+      "properties": {
+        "id": "HOSPITAL_GENERAL",
+        "municipality": "Valencia",
+        "is_hospital": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          718200.0,
+          4377200.0
+        ]
+      },
+      "properties": {
+        "id": "HOSPITAL_MANISES",
+        "municipality": "Manises",
+        "is_hospital": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            699500.0,
+            4377000.0
+          ],
+          [
+            703200.0,
+            4374500.0
+          ]
+        ]
+      },
+      "properties": {
+        "source": "N_CHIVA",
+        "target": "N_CHESTE",
+        "name": "A-3",
+        "is_bridge": false,
+        "is_active": true,
+        "travel_time_min": 4.88,
+        "failure_reason": "NINGUNO",
+        "h_water_m": 0.0,
+        "vel_water_ms": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            703200.0,
+            4374500.0
+          ],
+          [
+            720500.0,
+            4368500.0
+          ]
+        ]
+      },
+      "properties": {
+        "source": "N_CHESTE",
+        "target": "N_TORRENT",
+        "name": "CV-411",
+        "is_bridge": false,
+        "is_active": true,
+        "travel_time_min": 12.0,
+        "failure_reason": "NINGUNO",
+        "h_water_m": 0.0,
+        "vel_water_ms": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            720500.0,
+            4368500.0
+          ],
+          [
+            722000.0,
+            4369500.0
+          ]
+        ]
+      },
+      "properties": {
+        "source": "N_TORRENT",
+        "target": "N_PICANYA",
+        "name": "CV-366",
+        "is_bridge": false,
+        "is_active": true,
+        "travel_time_min": 2.64,
+        "failure_reason": "NINGUNO",
+        "h_water_m": 0.0,
+        "vel_water_ms": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            720500.0,
+            4368500.0
+          ],
+          [
+            722800.0,
+            4374100.0
+          ]
+        ]
+      },
+      "properties": {
+        "source": "N_TORRENT",
+        "target": "N_V30_OESTE",
+        "name": "CV-36_Norte",
+        "is_bridge": false,
+        "is_active": true,
+        "travel_time_min": 4.11,
+        "failure_reason": "NINGUNO",
+        "h_water_m": 0.0,
+        "vel_water_ms": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            720500.0,
+            4368500.0
+          ],
+          [
+            718200.0,
+            4377200.0
+          ]
+        ]
+      },
+      "properties": {
+        "source": "N_TORRENT",
+        "target": "HOSPITAL_MANISES",
+        "name": "CV-405_CV-370",
+        "is_bridge": false,
+        "is_active": true,
+        "travel_time_min": 7.2,
+        "failure_reason": "NINGUNO",
+        "h_water_m": 0.0,
+        "vel_water_ms": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            722000.0,
+            4369500.0
+          ],
+          [
+            723500.0,
+            4368200.0
+          ]
+        ]
+      },
+      "properties": {
+        "source": "N_PICANYA",
+        "target": "N_PAIPORTA",
+        "name": "Puente_Picanya_CV-407",
+        "is_bridge": true,
+        "is_active": false,
+        "travel_time_min": -1.0,
+        "failure_reason": "TAPONAMIENTO_INTRADOS_PUENTE",
+        "h_water_m": 2.6,
+        "vel_water_ms": 2.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            723500.0,
+            4368200.0
+          ],
+          [
+            725800.0,
+            4368900.0
+          ]
+        ]
+      },
+      "properties": {
+        "source": "N_PAIPORTA",
+        "target": "N_SEDAVI",
+        "name": "Camí_Compartit",
+        "is_bridge": true,
+        "is_active": true,
+        "travel_time_min": 3.75,
+        "failure_reason": "NINGUNO",
+        "h_water_m": 0.0,
+        "vel_water_ms": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            723500.0,
+            4368200.0
+          ],
+          [
+            724800.0,
+            4365800.0
+          ]
+        ]
+      },
+      "properties": {
+        "source": "N_PAIPORTA",
+        "target": "N_CATARROJA",
+        "name": "CV-400",
+        "is_bridge": false,
+        "is_active": true,
+        "travel_time_min": 3.36,
+        "failure_reason": "NINGUNO",
+        "h_water_m": 0.0,
+        "vel_water_ms": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            723500.0,
+            4368200.0
+          ],
+          [
+            725500.0,
+            4371500.0
+          ]
+        ]
+      },
+      "properties": {
+        "source": "N_PAIPORTA",
+        "target": "N_V30_SUR",
+        "name": "CV-36_Eje_Sur",
+        "is_bridge": true,
+        "is_active": false,
+        "travel_time_min": -1.0,
+        "failure_reason": "TAPONAMIENTO_INTRADOS_PUENTE",
+        "h_water_m": 1.9,
+        "vel_water_ms": 2.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            725800.0,
+            4368900.0
+          ],
+          [
+            725500.0,
+            4371500.0
+          ]
+        ]
+      },
+      "properties": {
+        "source": "N_SEDAVI",
+        "target": "N_V30_SUR",
+        "name": "V-31_Pista_Silla",
+        "is_bridge": false,
+        "is_active": false,
+        "travel_time_min": -1.0,
+        "failure_reason": "CALADO_CRITICO_FLOTABILIDAD",
+        "h_water_m": 1.2,
+        "vel_water_ms": 1.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            724800.0,
+            4365800.0
+          ],
+          [
+            724200.0,
+            4364500.0
+          ]
+        ]
+      },
+      "properties": {
+        "source": "N_CATARROJA",
+        "target": "N_ALBAL",
+        "name": "V-31_Enlace",
+        "is_bridge": false,
+        "is_active": true,
+        "travel_time_min": 1.5,
+        "failure_reason": "NINGUNO",
+        "h_water_m": 0.0,
+        "vel_water_ms": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            725500.0,
+            4371500.0
+          ],
+          [
+            726400.0,
+            4372100.0
+          ]
+        ]
+      },
+      "properties": {
+        "source": "N_V30_SUR",
+        "target": "HOSPITAL_LA_FE",
+        "name": "Bulevar_Sur",
+        "is_bridge": false,
+        "is_active": true,
+        "travel_time_min": 1.8,
+        "failure_reason": "NINGUNO",
+        "h_water_m": 0.0,
+        "vel_water_ms": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            722800.0,
+            4374100.0
+          ],
+          [
+            723500.0,
+            4373800.0
+          ]
+        ]
+      },
+      "properties": {
+        "source": "N_V30_OESTE",
+        "target": "HOSPITAL_GENERAL",
+        "name": "Av_Tres_Cruces",
+        "is_bridge": false,
+        "is_active": true,
+        "travel_time_min": 2.16,
+        "failure_reason": "NINGUNO",
+        "h_water_m": 0.0,
+        "vel_water_ms": 0.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# R environment
+.Rhistory
+.RData
+.Rproj.user/
+
+# Data and large rasters
+data/raw/*
+data/processed/*.tif
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Credenciales y claves privadas
+.streamlit/
+*/.streamlit/
+*.toml
+secrets.toml
