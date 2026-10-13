@@ -1066,7 +1066,7 @@ header_html = (
     f"<div style='margin-bottom:8px;'>{hud_badge} {eta_badge_html}</div>"
     f"<div style='display:flex; align-items:center; gap:12px; margin-bottom:4px;'>"
     f"<img src='{logo_url_hud}' width='40' style='border-radius:6px; box-shadow: 0 0 10px rgba(0, 230, 118, 0.4);'>"
-    f"<h1 style='margin:0; font-size:1.55rem; letter-spacing:-0.02em; color:#00e676;'>YGGDRASIL / HYDRO-CORE: OSIRIS C4ISR</h1>"
+    f"<h1 style='margin:0; font-size:1.55rem; letter-spacing:-0.02em; color:#00e676;'>YGGDRASIL / HYDRO-CORE: OSIRIS V5</h1>"
     f"</div>"
     f"<div style='color:#8b949e; font-size:0.75rem; margin-top:4px;'>ÁREA METROPOLITANA DE VALÈNCIA | GEMELO DIGITAL 3D (FÍSICA FNO 2D) & TRANSFERENCIA SOLVENCIA II</div>"
     f"</div>"
@@ -1636,7 +1636,7 @@ with tab_esalert:
                 </style>
             </head>
             <body>
-                <h1>INFORME OPERATIVO OFICIAL // YGGDRASIL ENVIRONMENTAL SYSTEMS: HYDRO CORE - OSIRIS: POYO-NOWCAST C4ISR</h1>
+                <h1>INFORME OPERATIVO OFICIAL // YGGDRASIL ENVIRONMENTAL SYSTEMS: HYDRO CORE - OSIRIS: POYO-NOWCAST V5</h1>
                 <p><i>Generado bajo el marco del World Environmental Health Day 2026</i><br>
                 <b>Theme:</b> Environmental Health: Standing with Science to Protect Communities</p>
                 
