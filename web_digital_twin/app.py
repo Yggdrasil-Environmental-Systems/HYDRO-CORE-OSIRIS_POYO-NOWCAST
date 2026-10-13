@@ -490,7 +490,7 @@ st.sidebar.markdown(
     unsafe_allow_html=True
 )
 
-st.sidebar.markdown("<div style='padding: 10px 14px; background: rgba(22, 27, 34, 0.95); border: 1px solid #30363d; border-left: 4px solid #00e676; border-radius: 6px; margin-bottom: 12px;'><b style='color: #00e676; font-size: 0.92rem;'>🌲 YGGDRASIL ENVIRONMENTAL SYSTEMS</b><br/><b style='color: #f0f6fc; font-size: 0.85rem;'>HYDRO-CORE: OSIRIS C4ISR</b><br/><span style='color: #8b949e; font-size: 0.74rem;'>Centro de Mando C4ISR | YGGDRASIL-OS</span></div>", unsafe_allow_html=True)
+st.sidebar.markdown("<div style='padding: 10px 14px; background: rgba(22, 27, 34, 0.95); border: 1px solid #30363d; border-left: 4px solid #00e676; border-radius: 6px; margin-bottom: 12px;'><b style='color: #00e676; font-size: 0.92rem;'>🌲 YGGDRASIL ENVIRONMENTAL SYSTEMS</b><br/><b style='color: #f0f6fc; font-size: 0.85rem;'>HYDRO-CORE: OSIRIS V5</b><br/><span style='color: #8b949e; font-size: 0.74rem;'>Centro de Mando C4ISR | YGGDRASIL-OS</span></div>", unsafe_allow_html=True)
 
 st.sidebar.markdown(
     """
